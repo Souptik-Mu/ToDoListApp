@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Controls
 
+//import InputField
+
 Window {
     width: 640
     height: 480
@@ -13,13 +15,10 @@ Window {
         width : 100
         text : "Tasks"
     }
-
-
-    TextField{
-        placeholderText: "Enter Task  add"
-    }
     InputField{
-
+        height: 100
+        width:500
+        anchors.centerIn: parent
     }
 
 }

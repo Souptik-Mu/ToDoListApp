@@ -45,10 +45,11 @@ Item {
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredWidth: 80
                 Layout.preferredHeight: 25
-                Layout.margins: 8
+                Layout.margins: 5
 
                 text : "Add Task"
                 font.family: "Comic Sans MS"
+                font.pointSize: 10.5
 
                 background: Rectangle {
                     radius: parent.height/2
