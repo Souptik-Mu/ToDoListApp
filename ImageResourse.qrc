@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Assets/Images/Icons/trash.png</file>
+    </qresource>
+</RCC>
