@@ -1,5 +1,5 @@
 import QtQuick
-import QtQuick.Controls
+import QtQuick.Controls.Material  // or fusion or
 import QtQuick.Layouts
 //import QtQuick.
 
@@ -9,12 +9,16 @@ Item {
 
     signal taskComplete(bool f)
 
+    //Material.theme: Material.Dark
+    //Material.accent: Material.Purple
+
     height: 100
     width:500
     Rectangle{
         //anchors.verticalCenter: parent
         implicitWidth: row.implicitWidth
         implicitHeight: row.implicitHeight
+
         RowLayout{
             id: row
             spacing: 5
@@ -43,7 +47,7 @@ Item {
                 }
                 color: taskDone ? "#50000000" : "#000000"
 
-                text: "Some TEmporary Text HEre!"
+                text: "Some TEmporary Text HEre!" + Qt.application.style
 
             }
             Button{
