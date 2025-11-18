@@ -17,10 +17,9 @@ qt_add_qml_module(appTodoListApp
     QML_FILES
         Main.qml
         QML_FILES InputField.qml
-        QML_FILES TaskPanel.qml
         QML_FILES TaskCard.qml
-        RESOURCES
         RESOURCES ImageResourse.qrc
+        QML_FILES TaskPanel.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
@@ -36,6 +35,7 @@ set_target_properties(appTodoListApp PROPERTIES
 
 target_link_libraries(appTodoListApp
     PRIVATE Qt6::Quick
+
 )
 
 include(GNUInstallDirs)

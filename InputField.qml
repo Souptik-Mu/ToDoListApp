@@ -35,10 +35,20 @@ Item {
                 }
                 placeholderText: "Enter task to add..."
                 background: Rectangle {
+                                implicitWidth: 320
+                                implicitHeight: 25
                                 color: "white"
                                 border.width: 0
                             }
                 //onTextChanged: inputValue = text
+                // This is the official recommended way
+                selectByMouse: true
+                selectionColor: "#3399ff"
+                selectedTextColor: "white"
+
+                // ← These two lines are the key for borderless look on Basic/Fusion/Material
+                leftPadding: 12
+                rightPadding: 12
             }
             RoundButton{
                 id: addButton
@@ -57,7 +67,10 @@ Item {
                     border.color: "#2A000000"
                     color: addButton.hovered? "#ECEBf1": "#FFFFFF"
                 }
-                onClicked: clickedAdd(inputText.text)
+                onClicked: {
+                    clickedAdd(inputText.text)
+                    inputText.clear()
+                }
             }
         }
     }

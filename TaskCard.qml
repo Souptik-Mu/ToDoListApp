@@ -1,21 +1,25 @@
 import QtQuick
-import QtQuick.Controls.Material  // or fusion or
+import QtQuick.Controls.Basic  // or fusion or
 import QtQuick.Layouts
 //import QtQuick.
 
 Item {
-    property alias taskDone : checkBox.checked
-    property alias taskText : taskName.text
+    property bool taskDone: false
+    property string taskText
+    property int taskIndex
 
-    signal taskComplete(bool f)
+    signal taskComplete(int index , bool f)
+    signal deleteTask(int index)
 
     //Material.theme: Material.Dark
     //Material.accent: Material.Purple
 
-    height: 100
+
+
+    height: 50
     width:500
     Rectangle{
-        //anchors.verticalCenter: parent
+        anchors.verticalCenter: parent.verticalCenter
         implicitWidth: row.implicitWidth
         implicitHeight: row.implicitHeight
 
@@ -26,7 +30,8 @@ Item {
                 id: checkBox
 
                 Layout.margins: 10
-                onToggled: taskComplete(checked)
+                checked: taskDone
+                onToggled: taskComplete(index,checked)
 
 
                 //I dont like the style of the check button so change it
@@ -47,7 +52,7 @@ Item {
                 }
                 color: taskDone ? "#50000000" : "#000000"
 
-                text: "Some TEmporary Text HEre!" + Qt.application.style
+                text: taskText.length==0 ? "Some TEmporary Text HEre!" : taskText
 
             }
             Button{
@@ -67,7 +72,8 @@ Item {
                         : deleteButton.hovered ? "#1A000000"
                                                 : "transparent"
                     border.width: 1
-               }
+                }
+                onClicked : deleteTask(index)
 
             }
 

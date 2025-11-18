@@ -1,21 +1,24 @@
 import QtQuick
 
+//not in work, make it work, keep all the styles..
 Item {
-    ListView{
-        id: taskList
-        width: 400
-        height: 600
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.margins: 20
 
-        // model would be a cpp class which will inherit from QAbstructListModel class
-        model: ListModel {
-            ListElement { title: "Buy milk"; done: false }
-            ListElement { title: "Finish project"; done: true }
+            ListView {
+                id: taskList
+                anchors.centerIn: parent          // THIS is the magic line
+                width: 520                        // a bit wider than your cards
+                height: parent.height
+                clip: true
+                spacing: 8
+
+                model: todoModel
+                delegate: TaskCard {
+                    width: taskList.width
+                    taskText: model.title
+                    taskDone: model.done
+                }
+            }
         }
-
-        delegate: TaskCard {
-            title: model.title
-            done: model.done
-        }
-
-    }
-}
