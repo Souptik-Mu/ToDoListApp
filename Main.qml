@@ -21,57 +21,39 @@ Window {
             Layout.fillWidth: true
             height: 100
             width:500
-            //anchors.centerIn: parent
+            //anchors.hghcenterIn: parent
 
             onClickedAdd: (inputValue) =>{
                 //inputValue
                 console.log("poiko :" + inputValue)
                 todoModel.append({
-                                    "title": inputValue + ""+todoModel.count,
+                                    "title": inputValue,
                                     "done" : false,
                                     //"index" : todoModel.count
 
                                  })
             }
-
         }
-        ListView{
+        TaskPanel{
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
             Layout.leftMargin: 10
-            id: taskList
-            width: 500
-            height: 400
-            clip: true
-            boundsBehavior: Flickable.StopAtBounds
-            //ScrollBar.vertical: ScrollBar{}
+            taskModel : todoModel
 
-            // model would be a cpp class which will inherit from QAbstructListModel class
-            model: ListModel {
-                id : todoModel
-                //ListElement { title: "Buy milk"; done: false }
-                //ListElement { title: "Finish project"; done: true }
+            onTaskCompleted: (idx, state) => {
+                todoModel.setProperty(idx, "done", state)
+                console.log("complete:", idx, state)
             }
 
-            delegate: TaskCard {
-                id : taskDeligate
-                taskText: todoModel.title
-                taskDone: todoModel.done
-                taskIndex:  todoModel.index
-
-                onTaskComplete: (idx ,state) => {
-                    todoModel.setProperty(idx, "done", state)
-                                     console.log("chekc"+idx+"  , "+state)
-                }
-
-                onDeleteTask: (idx) => {
-                    console.log("diy"+idx)
-                    todoModel.remove(idx)
-
-                }
+            onTaskDeleted: (idx) => {
+                todoModel.remove(idx)
+                console.log("deleted:", idx)
             }
-
         }
     }
-
+    ListModel {
+        id : todoModel
+        //ListElement { title: "Buy milk"; done: false }
+        //ListElement { title: "Finish project"; done: true }
+    }
 }

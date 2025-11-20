@@ -16,8 +16,8 @@ Item {
 
 
 
-    height: 50
-    width:500
+    height: 60
+    //width:400
     Rectangle{
         anchors.verticalCenter: parent.verticalCenter
         implicitWidth: row.implicitWidth
@@ -46,7 +46,7 @@ Item {
                 font {
                     family: "Ink Free"
                     pointSize: 14
-                    strikeout: taskDone
+                    strikeout: taskDone //checkBox.checked
                     //weight : taskDone ? 100 : 500
 
                 }
